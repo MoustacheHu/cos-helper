@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+require('colors');
+const cosHelper = require('../lib');
+const pkg = require('../package.json');
+const argv = require('optimist').argv;
+const {
+  _,
+  secretId,
+  secretKey,
+  bucket,
+  region,
+  cdnRefresh,
+  cdnSecretId,
+  cdnSecretKey,
+  ...rest
+} = argv || {};
+
+let file = _[0];
+
+if (!file || !secretId || !secretKey || !bucket || !region) {
+  console.log(`v${pkg.version}`);
+  console.log('files|secretId|secretKey|bucket|region|cdnDomain 为必填字段');
+  console.log('Usage: cos-cdn [files] [--directoryPath directoryPath] [--jsPolyfill] [--compress] [--jsCompress] [--imgCompress] ' +
+    '[--cdnRefresh] [--cdnPathTxt] [--cdnDomain cdnDomain] [--secretId secretId] [--secretKey secretKey] [--region --region] [--bucket --bucket]' +
+    ' [--cdnSecretId cdnSecretId] [--cdnSecretKey cdnSecretKey]');
+} else if (cdnRefresh && (!cdnSecretId || !cdnSecretKey)) {
+  console.log('开启 cdn 刷新时，cdnSecretId|cdnSecretKey 为必填字段');
+} else { // 将文件上传至腾讯云 cos
+  cosHelper({
+    secretId,
+    secretKey,
+    bucket,
+    region,
+    cdnRefresh,
+    cdnSecretId,
+    cdnSecretKey,
+    ...rest,
+    globFiles: argv._
+  });
+}
