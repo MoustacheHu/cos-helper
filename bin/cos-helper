@@ -11,6 +11,7 @@ const {
   bucket,
   region,
   cdnRefresh,
+  cdnDomain,
   cdnSecretId,
   cdnSecretKey,
   ...rest
@@ -18,7 +19,7 @@ const {
 
 let file = _[0];
 
-if (!file || !secretId || !secretKey || !bucket || !region) {
+if (!file || !secretId || !secretKey || !bucket || !region || !cdnDomain) {
   console.log(`v${pkg.version}`);
   console.log('入参错误，files | secretId | secretKey | bucket | region | cdnDomain 为必传字段'.red);
   console.table([
@@ -107,6 +108,7 @@ if (!file || !secretId || !secretKey || !bucket || !region) {
     bucket,
     region,
     cdnRefresh,
+    cdnDomain,
     cdnSecretId,
     cdnSecretKey,
     ...rest,
