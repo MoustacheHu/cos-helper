@@ -20,10 +20,84 @@ let file = _[0];
 
 if (!file || !secretId || !secretKey || !bucket || !region) {
   console.log(`v${pkg.version}`);
-  console.log('files|secretId|secretKey|bucket|region|cdnDomain 为必填字段');
-  console.log('Usage: cos-cdn [files] [--directoryPath directoryPath] [--jsPolyfill] [--compress] [--jsCompress] [--imgCompress] ' +
-    '[--cdnRefresh] [--cdnPathTxt] [--cdnDomain cdnDomain] [--secretId secretId] [--secretKey secretKey] [--region --region] [--bucket --bucket]' +
-    ' [--cdnSecretId cdnSecretId] [--cdnSecretKey cdnSecretKey]');
+  console.log('入参错误，files | secretId | secretKey | bucket | region | cdnDomain 为必传字段'.red);
+  console.table([
+    {
+      '字段名': 'files',
+      '是否必传': '是',
+      '备注': '文件或目录，需要遵循glob规范'
+    },
+    {
+      '字段名': 'secretId',
+      '是否必传': '是',
+      '备注': 'cos 服务秘钥字段'
+    },
+    {
+      '字段名': 'secretKey',
+      '是否必传': '是',
+      '备注': 'cos 服务秘钥字段'
+    },
+    {
+      '字段名': 'bucket',
+      '是否必传': '是',
+      '备注': 'cos 存储桶名称'
+    },
+    {
+      '字段名': 'region',
+      '是否必传': '是',
+      '备注': 'cos 可用地域'
+    },
+    {
+      '字段名': 'cdnDomain',
+      '是否必传': '是',
+      '备注': 'cdn 域名'
+    },
+    {
+      '字段名': 'directoryPath',
+      '是否必传': '否',
+      '备注': '上传到 cos 的目录'
+    },
+    {
+      '字段名': 'jsPolyfill',
+      '是否必传': '否',
+      '备注': '是否转译 js'
+    },
+    {
+      '字段名': 'compress',
+      '是否必传': '否',
+      '备注': '是否压缩文件（包括 js 和图片）'
+    },
+    {
+      '字段名': 'jsCompress',
+      '是否必传': '否',
+      '备注': '是否压缩 js'
+    },
+    {
+      '字段名': 'imgCompress',
+      '是否必传': '否',
+      '备注': '是否压缩图片（仅支持png/jpeg/svg/gif）'
+    },
+    {
+      '字段名': 'cdnRefresh',
+      '是否必传': '否',
+      '备注': '是否刷新 cdn 缓存'
+    },
+    {
+      '字段名': 'cdnPathTxt',
+      '是否必传': '否',
+      '备注': '是否下载上传到 cos 的所有文件路径列表'
+    },
+    {
+      '字段名': 'cdnSecretId',
+      '是否必传': '否',
+      '备注': 'cdn 服务秘钥字段，在 cdnRefresh 为 true 时必传'
+    },
+    {
+      '字段名': 'cdnSecretKey',
+      '是否必传': '否',
+      '备注': 'cdn 服务秘钥字段，在 cdnRefresh 为 true 时必传'
+    }
+  ]);
 } else if (cdnRefresh && (!cdnSecretId || !cdnSecretKey)) {
   console.log('开启 cdn 刷新时，cdnSecretId|cdnSecretKey 为必填字段');
 } else { // 将文件上传至腾讯云 cos

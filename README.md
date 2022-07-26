@@ -13,7 +13,7 @@ cos-helper test/** --secretId [secretId] --secretKey [secretKey] --bucket [bucke
 | files | string（以空格隔开） | 是 | 文件或目录，需要遵循glob规范 |
 | directoryPath | string | 否 | 上传到 cos 的目录 |
 | jsPolyfill | boolean | 否 | 是否转译 js |
-| compress | boolean | 否 | 是否压缩文件（包括 js 和图片） |
+| compress | boolean | 否 | 是否压缩文件（包括 js 和图片）|
 | jsCompress | boolean | 否 | 是否压缩 js |
 | imgCompress | boolean | 否 | 是否压缩图片（仅支持png/jpeg/svg/gif）|
 | cdnRefresh | boolean | 否 | 是否刷新 cdn 缓存 |
