@@ -11,6 +11,7 @@ const {
   bucket,
   region,
   cdnRefresh,
+  cdnPathTxt,
   cdnDomain,
   cdnSecretId,
   cdnSecretKey,
@@ -100,9 +101,9 @@ if (!file || !secretId || !secretKey || !bucket || !region) {
     }
   ]);
 } else if (!cdnDomain && (cdnRefresh || cdnPathTxt)) {
-  console.log('使用 cdn 相关功能时，cdnDomain 为必填字段');
+  console.log('使用 cdn 相关功能时，cdnDomain 为必填字段'.red);
 } else if (cdnRefresh && (!cdnSecretId || !cdnSecretKey)) {
-  console.log('开启 cdn 刷新时，cdnSecretId | cdnSecretKey 为必填字段');
+  console.log('开启 cdn 刷新时，cdnSecretId | cdnSecretKey 为必填字段'.red);
 } else { // 将文件上传至腾讯云 cos
   cosHelper({
     secretId,
@@ -110,6 +111,7 @@ if (!file || !secretId || !secretKey || !bucket || !region) {
     bucket,
     region,
     cdnRefresh,
+    cdnPathTxt,
     cdnDomain,
     cdnSecretId,
     cdnSecretKey,

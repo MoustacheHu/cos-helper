@@ -1,7 +1,7 @@
 {
   "name": "cos-helper",
   "description": "tool to ship web assets to the tencent cloud cos",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "test": "node ./bin/cos-helper test/** --directoryPath named-20220725 --jsPolyfill --compress --secretId mockSecretId --secretKey mockSecretKey --bucket mockBucket --region mockRegion",
     "lint": "eslint lib/*.js bin/*",
