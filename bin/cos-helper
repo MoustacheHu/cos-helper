@@ -19,9 +19,9 @@ const {
 
 let file = _[0];
 
-if (!file || !secretId || !secretKey || !bucket || !region || !cdnDomain) {
+if (!file || !secretId || !secretKey || !bucket || !region) {
   console.log(`v${pkg.version}`);
-  console.log('入参错误，files | secretId | secretKey | bucket | region | cdnDomain 为必传字段'.red);
+  console.log('入参错误，files | secretId | secretKey | bucket | region 为必传字段'.red);
   console.table([
     {
       '字段名': 'files',
@@ -50,8 +50,8 @@ if (!file || !secretId || !secretKey || !bucket || !region || !cdnDomain) {
     },
     {
       '字段名': 'cdnDomain',
-      '是否必传': '是',
-      '备注': 'cdn 域名'
+      '是否必传': '否',
+      '备注': 'cdn 域名（当使用 cdn 相关功能时必填）'
     },
     {
       '字段名': 'directoryPath',
@@ -99,8 +99,10 @@ if (!file || !secretId || !secretKey || !bucket || !region || !cdnDomain) {
       '备注': 'cdn 服务秘钥字段，在 cdnRefresh 为 true 时必传'
     }
   ]);
+} else if (!cdnDomain && (cdnRefresh || cdnPathTxt)) {
+  console.log('使用 cdn 相关功能时，cdnDomain 为必填字段');
 } else if (cdnRefresh && (!cdnSecretId || !cdnSecretKey)) {
-  console.log('开启 cdn 刷新时，cdnSecretId|cdnSecretKey 为必填字段');
+  console.log('开启 cdn 刷新时，cdnSecretId | cdnSecretKey 为必填字段');
 } else { // 将文件上传至腾讯云 cos
   cosHelper({
     secretId,

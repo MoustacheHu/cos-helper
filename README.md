@@ -18,7 +18,7 @@ cos-helper test/** --secretId [secretId] --secretKey [secretKey] --bucket [bucke
 | imgCompress | boolean | 否 | 是否压缩图片（仅支持png/jpeg/svg/gif）|
 | cdnRefresh | boolean | 否 | 是否刷新 cdn 缓存 |
 | cdnPathTxt | boolean  | 否 | 是否下载上传到 cos 的所有文件路径列表 |
-| cdnDomain | string  | 是 | cdn 域名 |
+| cdnDomain | string  | 否 | cdn 域名（当使用 cdn 相关功能时必填） |
 | secretId | string | 是 | cos 服务秘钥字段 |
 | secretKey | string | 是 | cos 服务秘钥字段 |
 | bucket | string | 是 | cos 存储桶名称 |
